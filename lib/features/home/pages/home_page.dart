@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:vending_test/features/home/widgets/machines_list.dart';
+
+import '../../../core/widgets/custom_appbar.dart';
+import '../../../core/widgets/custom_scaffold.dart';
+import '../widgets/home_add_button.dart';
+import '../widgets/profit_card.dart';
+import '../widgets/tab_widget.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScaffold(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Column(
+            children: [
+              const CustomAppbar('Onboard', home: true),
+              const SizedBox(height: 15),
+              const ProfitCard(),
+              const SizedBox(height: 24),
+              TabWidget(tabController: _tabController),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: const [
+                    MachinesList(),
+                    Placeholder(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const HomeAddButton(),
+        ],
+      ),
+    );
+  }
+}
