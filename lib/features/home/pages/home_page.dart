@@ -6,6 +6,7 @@ import '../../../core/widgets/custom_scaffold.dart';
 import '../../machine/bloc/machine_bloc.dart';
 import '../widgets/home_add_button.dart';
 import '../widgets/machine_card.dart';
+import '../widgets/no_data.dart';
 import '../widgets/product_card.dart';
 import '../widgets/profit_card.dart';
 import '../widgets/tab_widget.dart';
@@ -53,6 +54,7 @@ class _HomePageState extends State<HomePage>
                     BlocBuilder<MachineBloc, MachineState>(
                       builder: (context, state) {
                         if (state is MachinesLoadedState) {
+                          if (state.machines.isEmpty) return const NoData();
                           return ListView(
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             children: [
@@ -68,7 +70,6 @@ class _HomePageState extends State<HomePage>
                             ],
                           );
                         }
-
                         return Container();
                       },
                     ),
