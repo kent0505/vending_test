@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:vending_test/core/models/product.dart';
 
 import '../../../core/config/app_colors.dart';
+import '../../../core/models/machine.dart';
 
 class MachineCard extends StatelessWidget {
-  const MachineCard({super.key});
+  const MachineCard({super.key, required this.machine});
+
+  final Machine machine;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,7 @@ class MachineCard extends StatelessWidget {
       ),
       child: Row(
         children: [
+          const SizedBox(width: 8),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -36,10 +41,10 @@ class MachineCard extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          'Drinks',
-                          style: TextStyle(
+                          machine.type,
+                          style: const TextStyle(
                             color: AppColors.main,
                             fontSize: 16,
                             fontWeight: FontWeight.w300,
@@ -51,9 +56,10 @@ class MachineCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Coffee machine',
-                  style: TextStyle(
+                Text(
+                  machine.name,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -61,9 +67,10 @@ class MachineCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  'Rue des Degres',
-                  style: TextStyle(
+                Text(
+                  machine.location,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -73,11 +80,13 @@ class MachineCard extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(width: 8),
           Container(
             width: 1,
             height: 72,
             color: Colors.white,
           ),
+          const SizedBox(width: 8),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -102,10 +111,10 @@ class MachineCard extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          'Coffee',
-                          style: TextStyle(
+                          (machine.products[0] as Product).name,
+                          style: const TextStyle(
                             color: Color(0xffA68120),
                             fontSize: 16,
                             fontWeight: FontWeight.w300,
@@ -120,6 +129,7 @@ class MachineCard extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(width: 8),
         ],
       ),
     );

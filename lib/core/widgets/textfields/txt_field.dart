@@ -7,17 +7,13 @@ class TxtField extends StatelessWidget {
   const TxtField({
     super.key,
     required this.controller,
-    this.hintText = '...',
-    this.limit = 20,
-    this.borderRadius = 8,
+    required this.hintText,
     this.number = false,
     required this.onChanged,
   });
 
   final TextEditingController controller;
   final String hintText;
-  final int limit;
-  final double borderRadius;
   final bool number;
   final void Function() onChanged;
 
@@ -27,7 +23,7 @@ class TxtField extends StatelessWidget {
       height: 44,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: AppColors.main,
           width: 1,
@@ -41,7 +37,7 @@ class TxtField extends StatelessWidget {
             FilteringTextInputFormatter.digitsOnly,
             LengthLimitingTextInputFormatter(6),
           ] else
-            LengthLimitingTextInputFormatter(limit),
+            LengthLimitingTextInputFormatter(20),
         ],
         textCapitalization: TextCapitalization.sentences,
         style: const TextStyle(

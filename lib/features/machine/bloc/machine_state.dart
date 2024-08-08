@@ -4,12 +4,7 @@ abstract class MachineState {}
 
 class MachineInitial extends MachineState {}
 
-class SecondPageState extends MachineState {
-  final String title;
-  SecondPageState({required this.title});
-}
-
-class ThirdPageState extends MachineState {
-  final String title;
-  ThirdPageState({required this.title});
+class MachinesLoadedState extends MachineState {
+  final List<Machine> machines;
+  MachinesLoadedState({required this.machines});
 }

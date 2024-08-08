@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/custom_scaffold.dart';
+import '../../machine/bloc/machine_bloc.dart';
 import '../widgets/home_add_button.dart';
 import '../widgets/machine_card.dart';
 import '../widgets/product_card.dart';
@@ -48,13 +50,27 @@ class _HomePageState extends State<HomePage>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    ListView(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      children: const [
-                        SizedBox(height: 27),
-                        MachineCard(),
-                        MachineCard(),
-                      ],
+                    BlocBuilder<MachineBloc, MachineState>(
+                      builder: (context, state) {
+                        if (state is MachinesLoadedState) {
+                          return ListView(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            children: [
+                              const SizedBox(height: 27),
+                              ...List.generate(
+                                state.machines.length,
+                                (index) {
+                                  return MachineCard(
+                                    machine: state.machines[index],
+                                  );
+                                },
+                              ),
+                            ],
+                          );
+                        }
+
+                        return Container();
+                      },
                     ),
                     ListView(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
