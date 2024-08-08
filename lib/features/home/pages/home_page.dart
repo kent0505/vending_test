@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:vending_test/features/home/widgets/machines_list.dart';
 
 import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/custom_scaffold.dart';
 import '../widgets/home_add_button.dart';
+import '../widgets/machine_card.dart';
+import '../widgets/product_card.dart';
 import '../widgets/profit_card.dart';
 import '../widgets/tab_widget.dart';
 
@@ -46,9 +47,23 @@ class _HomePageState extends State<HomePage>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: const [
-                    MachinesList(),
-                    Placeholder(),
+                  children: [
+                    ListView(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      children: const [
+                        SizedBox(height: 27),
+                        MachineCard(),
+                        MachineCard(),
+                      ],
+                    ),
+                    ListView(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      children: const [
+                        SizedBox(height: 27),
+                        ProductCard(),
+                        ProductCard(),
+                      ],
+                    ),
                   ],
                 ),
               ),

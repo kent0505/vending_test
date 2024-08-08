@@ -2,24 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/config/app_colors.dart';
 
-class MachinesList extends StatelessWidget {
-  const MachinesList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      children: const [
-        SizedBox(height: 27),
-        _MachineCard(),
-        _MachineCard(),
-      ],
-    );
-  }
-}
-
-class _MachineCard extends StatelessWidget {
-  const _MachineCard({super.key});
+class MachineCard extends StatelessWidget {
+  const MachineCard({super.key});
 
   @override
   Widget build(BuildContext context) {
