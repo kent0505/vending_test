@@ -73,13 +73,25 @@ class _HomePageState extends State<HomePage>
                         return Container();
                       },
                     ),
-                    ListView(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      children: const [
-                        SizedBox(height: 27),
-                        ProductCard(),
-                        ProductCard(),
-                      ],
+                    BlocBuilder<MachineBloc, MachineState>(
+                      builder: (context, state) {
+                        if (state is MachinesLoadedState) {
+                          if (state.products.isEmpty) return const NoData();
+                          return ListView(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            children: [
+                              const SizedBox(height: 27),
+                              ...List.generate(
+                                state.products.length,
+                                (index) {
+                                  return const ProductCard();
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                        return Container();
+                      },
                     ),
                   ],
                 ),

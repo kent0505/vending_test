@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/machine.dart';
+import 'models/product.dart';
 
 bool onboard = true;
 
@@ -37,4 +38,14 @@ Future<List<Machine>> updateModels() async {
 
 int getCurrentTimestamp() {
   return DateTime.now().millisecondsSinceEpoch ~/ 1000;
+}
+
+List<Product> getProducts() {
+  List<Product> products = [];
+  for (Machine machine in machinesList) {
+    for (Product product in machine.products) {
+      products.add(product);
+    }
+  }
+  return products;
 }

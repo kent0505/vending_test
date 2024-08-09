@@ -6,5 +6,9 @@ class MachineInitial extends MachineState {}
 
 class MachinesLoadedState extends MachineState {
   final List<Machine> machines;
-  MachinesLoadedState({required this.machines});
+  final List<Product> products;
+  MachinesLoadedState({
+    required this.machines,
+    required this.products,
+  });
 }
