@@ -60,10 +60,20 @@ class MachineBloc extends Bloc<MachineEvent, MachineState> {
       ));
     });
 
+    on<AddProductEvent>((event, emit) async {
+      event.machine.products.add(event.product);
+      _machines = await updateModels();
+      emit(MachinesLoadedState(
+        machines: _machines,
+        products: productsList,
+      ));
+    });
+
     on<EditProductEvent>((event, emit) async {
       for (Machine machine in machinesList) {
         for (Product product in machine.products) {
           if (product.id == event.product.id) {
+            if (event.replenish) product.id = getCurrentTimestamp();
             product.name = event.product.name;
             product.price = event.product.price;
             product.consumptionPrice = event.product.consumptionPrice;
@@ -76,6 +86,22 @@ class MachineBloc extends Bloc<MachineEvent, MachineState> {
         machines: _machines,
         products: productsList,
       ));
+    });
+
+    on<DeleteProductEvent>((event, emit) async {
+      for (Machine machine in machinesList) {
+        for (Product product in machine.products) {
+          if (product.id == event.product.id) {
+            machine.products.remove(product);
+            _machines = await updateModels();
+            emit(MachinesLoadedState(
+              machines: _machines,
+              products: productsList,
+            ));
+            return;
+          }
+        }
+      }
     });
   }
 }

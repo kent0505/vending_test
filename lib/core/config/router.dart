@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/home/pages/home_page.dart';
 import '../../features/home/pages/settings_page.dart';
 import '../../features/machine/pages/add_machine_page.dart';
+import '../../features/machine/pages/add_product_page.dart';
 import '../../features/machine/pages/edit_machine_page.dart';
 import '../../features/machine/pages/edit_product_page.dart';
 import '../../features/news/pages/news_page.dart';
@@ -49,6 +50,12 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/edit',
       builder: (context, state) => EditMachinePage(
+        machine: state.extra as Machine,
+      ),
+    ),
+    GoRoute(
+      path: '/product-add',
+      builder: (context, state) => AddProductPage(
         machine: state.extra as Machine,
       ),
     ),

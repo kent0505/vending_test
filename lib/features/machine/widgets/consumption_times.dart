@@ -6,11 +6,11 @@ import '../../../core/config/app_colors.dart';
 class ConsumptionTimes extends StatelessWidget {
   const ConsumptionTimes({
     super.key,
-    required this.cunsumption,
+    required this.consumption,
     required this.onTap,
   });
 
-  final String cunsumption;
+  final String consumption;
   final void Function(String) onTap;
 
   @override
@@ -21,13 +21,13 @@ class ConsumptionTimes extends StatelessWidget {
           children: [
             _TimeCard(
               title: 'Daily',
-              active: cunsumption == 'Daily',
+              active: consumption == 'Daily',
               onTap: onTap,
             ),
             const SizedBox(width: 8),
             _TimeCard(
               title: 'Weekly',
-              active: cunsumption == 'Weekly',
+              active: consumption == 'Weekly',
               onTap: onTap,
             ),
           ],
@@ -37,13 +37,13 @@ class ConsumptionTimes extends StatelessWidget {
           children: [
             _TimeCard(
               title: 'Monthly',
-              active: cunsumption == 'Monthly',
+              active: consumption == 'Monthly',
               onTap: onTap,
             ),
             const SizedBox(width: 8),
             _TimeCard(
               title: 'Annual',
-              active: cunsumption == 'Annual',
+              active: consumption == 'Annual',
               onTap: onTap,
             ),
           ],

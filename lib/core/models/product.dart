@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 @HiveType(typeId: 1)
 class Product {
   @HiveField(0)
-  final int id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -12,6 +12,8 @@ class Product {
   int consumptionPrice;
   @HiveField(4)
   String consumption;
+  @HiveField(5)
+  final int machine;
 
   Product({
     required this.id,
@@ -19,6 +21,7 @@ class Product {
     required this.price,
     required this.consumptionPrice,
     required this.consumption,
+    required this.machine,
   });
 }
 
@@ -34,6 +37,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       price: reader.read(),
       consumptionPrice: reader.read(),
       consumption: reader.read(),
+      machine: reader.read(),
     );
   }
 
@@ -44,5 +48,6 @@ class ProductAdapter extends TypeAdapter<Product> {
     writer.write(obj.price);
     writer.write(obj.consumptionPrice);
     writer.write(obj.consumption);
+    writer.write(obj.machine);
   }
 }

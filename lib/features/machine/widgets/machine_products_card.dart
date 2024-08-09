@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vending_test/core/utils.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/models/product.dart';
-import '../../../core/utils.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.product});
+class MachineProductsCard extends StatelessWidget {
+  const MachineProductsCard({super.key, required this.product});
 
   final Product product;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 117,
-      margin: const EdgeInsets.only(bottom: 25),
+      height: 143,
+      margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: AppColors.main,
         borderRadius: BorderRadius.circular(12),
@@ -73,13 +73,23 @@ class ProductCard extends StatelessWidget {
                       fontFamily: 'SFB',
                     ),
                   ),
+                  const SizedBox(height: 4),
+                  Text(
+                    getProductName(product),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'SFL',
+                    ),
+                  ),
                 ],
               ),
             ),
-            const SizedBox(width: 8),
             Container(
+              height: 100,
               width: 1,
-              height: 72,
               color: Colors.white,
             ),
             const SizedBox(width: 6),
@@ -125,7 +135,41 @@ class ProductCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 9),
+                  const SizedBox(height: 10),
+                  Container(
+                    height: 20,
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xff32C370),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 8),
+                        const Text(
+                          'Price per thing',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'SFR',
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          '${product.price}\$',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'SFR',
+                          ),
+                        ),
+                        const SizedBox(width: 7),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
                   Container(
                     height: 20,
                     padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -133,18 +177,30 @@ class ProductCard extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Center(
-                      child: Text(
-                        getProductName(product),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: AppColors.main,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'SFR',
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 8),
+                        const Text(
+                          'Consumption',
+                          style: TextStyle(
+                            color: Color(0xffA68120),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'SFR',
+                          ),
                         ),
-                      ),
+                        const Spacer(),
+                        Text(
+                          '${product.consumptionPrice}/${product.consumption}',
+                          style: const TextStyle(
+                            color: Color(0xffA68120),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'SFR',
+                          ),
+                        ),
+                        const SizedBox(width: 7),
+                      ],
                     ),
                   ),
                 ],

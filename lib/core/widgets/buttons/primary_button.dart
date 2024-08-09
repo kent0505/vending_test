@@ -10,12 +10,14 @@ class PrimaryButton extends StatelessWidget {
     required this.title,
     this.asset = '',
     this.active = true,
+    this.delete = false,
     required this.onPressed,
   });
 
   final String title;
   final String asset;
   final bool active;
+  final bool delete;
   final void Function() onPressed;
 
   @override
@@ -23,10 +25,14 @@ class PrimaryButton extends StatelessWidget {
     return Container(
       height: 44,
       decoration: BoxDecoration(
-        color: active ? AppColors.main : Colors.white,
+        color: active
+            ? delete
+                ? const Color(0xffEB5757)
+                : AppColors.main
+            : Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: AppColors.main,
+          color: delete ? const Color(0xffEB5757) : AppColors.main,
           width: 1,
         ),
       ),

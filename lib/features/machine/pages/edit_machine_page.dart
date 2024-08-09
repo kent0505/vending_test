@@ -9,6 +9,7 @@ import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/custom_scaffold.dart';
 import '../../../core/widgets/textfields/txt_field.dart';
 import '../bloc/machine_bloc.dart';
+import '../widgets/machine_products_card.dart';
 
 class EditMachinePage extends StatefulWidget {
   const EditMachinePage({super.key, required this.machine});
@@ -92,7 +93,9 @@ class _EditMachinePageState extends State<EditMachinePage> {
                       ),
                       const Spacer(),
                       CupertinoButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push('/product-add', extra: widget.machine);
+                        },
                         padding: EdgeInsets.zero,
                         minSize: 28,
                         child: SvgPicture.asset(
@@ -103,6 +106,15 @@ class _EditMachinePageState extends State<EditMachinePage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 20),
+                ...List.generate(
+                  widget.machine.products.length,
+                  (index) {
+                    return MachineProductsCard(
+                      product: widget.machine.products[index],
+                    );
+                  },
+                )
               ],
             ),
           ),

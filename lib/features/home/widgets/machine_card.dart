@@ -108,30 +108,31 @@ class MachineCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 20,
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Center(
-                          child: Text(
-                            (machine.products[0] as Product).name,
-                            style: const TextStyle(
-                              color: Color(0xffA68120),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w300,
-                              fontFamily: 'SFL',
+                  if (machine.products.isNotEmpty)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 20,
+                          padding: const EdgeInsets.symmetric(horizontal: 6),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Center(
+                            child: Text(
+                              (machine.products[0] as Product).name,
+                              style: const TextStyle(
+                                color: Color(0xffA68120),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w300,
+                                fontFamily: 'SFL',
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                   const SizedBox(height: 4),
                 ],
               ),

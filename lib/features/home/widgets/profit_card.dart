@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/config/app_colors.dart';
+import '../../../core/utils.dart';
 
 class ProfitCard extends StatelessWidget {
   const ProfitCard({super.key});
@@ -18,11 +19,11 @@ class ProfitCard extends StatelessWidget {
       child: Row(
         children: [
           const SizedBox(width: 18),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 12),
-              Text(
+              const SizedBox(height: 12),
+              const Text(
                 'You earned this month.',
                 style: TextStyle(
                   color: Colors.white,
@@ -31,8 +32,8 @@ class ProfitCard extends StatelessWidget {
                   fontFamily: 'SFB',
                 ),
               ),
-              SizedBox(height: 4),
-              Text(
+              const SizedBox(height: 4),
+              const Text(
                 'From all machines',
                 style: TextStyle(
                   color: Colors.white,
@@ -41,17 +42,17 @@ class ProfitCard extends StatelessWidget {
                   fontFamily: 'SFM',
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
-                '0 \$',
-                style: TextStyle(
+                '$earned \$',
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 26,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'SFB',
                 ),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
             ],
           ),
           const Spacer(),

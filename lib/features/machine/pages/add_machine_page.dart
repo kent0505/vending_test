@@ -117,6 +117,7 @@ class _AddMachinePageState extends State<AddMachinePage> {
                     price: int.tryParse(controller4.text) ?? 0,
                     consumptionPrice: int.tryParse(controller5.text) ?? 0,
                     consumption: cunsumption,
+                    machine: getCurrentTimestamp(),
                   ),
                 ],
               ),
@@ -211,7 +212,7 @@ class _AddMachinePageState extends State<AddMachinePage> {
                     ),
                     const SizedBox(height: 30),
                     ConsumptionTimes(
-                      cunsumption: cunsumption,
+                      consumption: cunsumption,
                       onTap: onConsumptionSelect,
                     ),
                   ],
