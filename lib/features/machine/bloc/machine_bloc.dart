@@ -9,21 +9,19 @@ part 'machine_state.dart';
 
 class MachineBloc extends Bloc<MachineEvent, MachineState> {
   List<Machine> _machines = [];
-  List<Product> _products = [];
 
   MachineBloc() : super(MachineInitial()) {
     on<GetMachinesEvent>((event, emit) async {
       if (machinesList.isEmpty) {
         _machines = await getModels();
-        _products = getProducts();
         emit(MachinesLoadedState(
           machines: _machines,
-          products: _products,
+          products: productsList,
         ));
       } else {
         emit(MachinesLoadedState(
           machines: _machines,
-          products: _products,
+          products: productsList,
         ));
       }
     });
@@ -31,10 +29,9 @@ class MachineBloc extends Bloc<MachineEvent, MachineState> {
     on<AddMachineEvent>((event, emit) async {
       machinesList.add(event.machine);
       _machines = await updateModels();
-      _products = getProducts();
       emit(MachinesLoadedState(
         machines: _machines,
-        products: _products,
+        products: productsList,
       ));
     });
 
@@ -48,20 +45,36 @@ class MachineBloc extends Bloc<MachineEvent, MachineState> {
         }
       }
       _machines = await updateModels();
-      _products = getProducts();
       emit(MachinesLoadedState(
         machines: _machines,
-        products: _products,
+        products: productsList,
       ));
     });
 
     on<DeleteMachineEvent>((event, emit) async {
       machinesList.removeWhere((element) => element.id == event.id);
       _machines = await updateModels();
-      _products = getProducts();
       emit(MachinesLoadedState(
         machines: _machines,
-        products: _products,
+        products: productsList,
+      ));
+    });
+
+    on<EditProductEvent>((event, emit) async {
+      for (Machine machine in machinesList) {
+        for (Product product in machine.products) {
+          if (product.id == event.product.id) {
+            product.name = event.product.name;
+            product.price = event.product.price;
+            product.consumptionPrice = event.product.consumptionPrice;
+            product.consumption = event.product.consumption;
+          }
+        }
+      }
+      _machines = await updateModels();
+      emit(MachinesLoadedState(
+        machines: _machines,
+        products: productsList,
       ));
     });
   }

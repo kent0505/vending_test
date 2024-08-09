@@ -20,12 +20,14 @@ Future<void> saveData() async {
 }
 
 List<Machine> machinesList = [];
+List<Product> productsList = [];
 
 Future<List<Machine>> getModels() async {
   final box = await Hive.openBox('machinesbox');
   List data = box.get('machinesList') ?? [];
   machinesList = data.cast<Machine>();
   log(machinesList.length.toString());
+  productsList = getProducts();
   return machinesList;
 }
 
@@ -33,6 +35,7 @@ Future<List<Machine>> updateModels() async {
   final box = await Hive.openBox('machinesbox');
   box.put('machinesList', machinesList);
   machinesList = await box.get('machinesList');
+  productsList = getProducts();
   return machinesList;
 }
 
@@ -48,4 +51,22 @@ List<Product> getProducts() {
     }
   }
   return products;
+}
+
+String getProductName(Product product) {
+  for (Machine machine in machinesList) {
+    if (product.id == machine.id) {
+      return machine.name;
+    }
+  }
+  return '';
+}
+
+String getProductType(Product product) {
+  for (Machine machine in machinesList) {
+    if (product.id == machine.id) {
+      return machine.type;
+    }
+  }
+  return '';
 }

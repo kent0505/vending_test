@@ -114,8 +114,8 @@ class _AddMachinePageState extends State<AddMachinePage> {
                   Product(
                     id: getCurrentTimestamp(),
                     name: controller3.text,
-                    price: int.parse(controller4.text),
-                    consumptionPrice: int.parse(controller5.text),
+                    price: int.tryParse(controller4.text) ?? 0,
+                    consumptionPrice: int.tryParse(controller5.text) ?? 0,
                     consumption: cunsumption,
                   ),
                 ],

@@ -10,11 +10,13 @@ class CustomAppbar extends StatelessWidget {
     this.title, {
     super.key,
     this.home = false,
+    this.onEdit,
     this.onBack,
   });
 
   final String title;
   final bool home;
+  final void Function()? onEdit;
   final void Function()? onBack;
 
   @override
@@ -51,7 +53,30 @@ class CustomAppbar extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          if (home)
+          if (onEdit != null) ...[
+            SizedBox(
+              width: 68,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CupertinoButton(
+                    onPressed: onEdit,
+                    padding: EdgeInsets.zero,
+                    minSize: 44,
+                    child: const Text(
+                      'Edit',
+                      style: TextStyle(
+                        color: AppColors.main,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: 'SFL',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ] else if (home)
             CupertinoButton(
               onPressed: () {
                 context.push('/news');

@@ -84,7 +84,9 @@ class _HomePageState extends State<HomePage>
                               ...List.generate(
                                 state.products.length,
                                 (index) {
-                                  return const ProductCard();
+                                  return ProductCard(
+                                    product: state.products[index],
+                                  );
                                 },
                               ),
                             ],

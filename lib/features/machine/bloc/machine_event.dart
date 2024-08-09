@@ -18,3 +18,8 @@ class DeleteMachineEvent extends MachineEvent {
   final int id;
   DeleteMachineEvent({required this.id});
 }
+
+class EditProductEvent extends MachineEvent {
+  final Product product;
+  EditProductEvent({required this.product});
+}
