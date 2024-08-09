@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage>
                                   );
                                 },
                               ),
+                              const SizedBox(height: 80),
                             ],
                           );
                         }
@@ -89,6 +90,7 @@ class _HomePageState extends State<HomePage>
                                   );
                                 },
                               ),
+                              const SizedBox(height: 80),
                             ],
                           );
                         }
